@@ -10,8 +10,11 @@
     <Folder Include="Logic\Supplier\" />
     <Folder Include="Logic\Product\" />
     <Folder Include="Logic\Operation\" />
-    <Folder Include="Logic\User\" />
     <Folder Include="Tools\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>

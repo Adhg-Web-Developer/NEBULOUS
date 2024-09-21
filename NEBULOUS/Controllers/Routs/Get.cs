@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NEBULOUS.Controllers.Urls;
 
 namespace NEBULOUS.Controllers.Routs
 {
@@ -55,6 +54,23 @@ namespace NEBULOUS.Controllers.Routs
             {
                 //return Ok(res);
                 return Ok("Ruta Dashboard");
+            }
+        }
+
+        // users
+        [HttpGet(Urls.Urls.Users)]
+        public IActionResult users()
+        {
+            bool res = false;
+            if (res)
+            {
+                res = true;
+                return Ok(res);
+            }
+            else
+            {
+                //return Ok(res);
+                return Ok("Ruta Users");
             }
         }
 

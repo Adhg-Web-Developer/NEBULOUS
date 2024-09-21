@@ -7,6 +7,7 @@
         public const string Logout = "/log-out";
         public const string AuthSession = "/auth-session";
         public const string Dashboard = "/dashboard";
+        public const string Users = "/users";
         public const string Suppliers = "/suppliers";
         public const string Products = "/products";
         public const string ProductCategory = "/product-category";
