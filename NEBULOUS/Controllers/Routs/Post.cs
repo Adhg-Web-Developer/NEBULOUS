@@ -56,8 +56,33 @@ namespace NEBULOUS.Controllers.Routs
             
             return Ok(res);
         }
-        // Editar
-        // Eliminar
-        // Eliminar
+
+        //// Modificar
+        [HttpPost(Urls.Urls.Users + "/methods/modify/")]
+        public async Task<ActionResult> modifyUser([FromForm] User user, [FromServices] string connection_sql)
+        {
+            bool res = await Task.FromResult(new LUser(connection_sql).ModifyUser(user));
+
+            if (user == null && !res)
+            {
+                return StatusCode(500, "Error al crear el usuario.");
+            }
+
+            return Ok(res);
+        }
+
+        //// Eliminar
+        [HttpPost(Urls.Urls.Users + "/methods/delete/")]
+        public async Task<ActionResult> deleteUser([FromForm] User user, [FromServices] string connection_sql)
+        {
+            bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(user.id.Value));
+
+            if (user == null && !res)
+            {
+                return StatusCode(500, "Error al crear el usuario.");
+            }
+
+            return Ok(res);
+        }
     }
 }

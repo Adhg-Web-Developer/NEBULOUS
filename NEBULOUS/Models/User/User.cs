@@ -2,9 +2,10 @@
 {
     public class User
     {
-        public required string firstName { get; set; }
-        public required string lastName { get; set; }
-        public required string user_ { get; set; }
-        public required string password_ { get; set; }
+        public int? id { get; set; }
+        public string? firstName { get; set; }
+        public string? lastName { get; set; }
+        public string? user_ { get; set; }
+        public string? password_ { get; set; }
     }
 }

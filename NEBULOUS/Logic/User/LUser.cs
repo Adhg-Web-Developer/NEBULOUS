@@ -23,10 +23,10 @@ namespace NEBULOUS.Logic.User
                 SqlCommand command = new SqlCommand("iUser", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
-                command.Parameters.AddWithValue("@FirstName", user.firstName);
-                command.Parameters.AddWithValue("@LastName", user.lastName);
-                command.Parameters.AddWithValue("@User_", user.user_);
-                command.Parameters.AddWithValue("@Password_", user.password_);
+                command.Parameters.AddWithValue("@firstName", user.firstName);
+                command.Parameters.AddWithValue("@lastName", user.lastName);
+                command.Parameters.AddWithValue("@user_", user.user_);
+                command.Parameters.AddWithValue("@password_", user.password_);
                 // Ejecutar el procedimiento
                 command.ExecuteNonQuery();
                 res = true;
@@ -82,13 +82,14 @@ namespace NEBULOUS.Logic.User
                 // Abrir conexión
                 sql_connection.Open();
                 // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("modifyUser", sql_connection);
+                SqlCommand command = new SqlCommand("mUser", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
-                command.Parameters.AddWithValue("@FirstName", user.firstName);
-                command.Parameters.AddWithValue("@LastName", user.lastName);
-                command.Parameters.AddWithValue("@User_", user.user_);
-                command.Parameters.AddWithValue("@Password_", user.password_);
+                command.Parameters.AddWithValue("@id", user.id);
+                command.Parameters.AddWithValue("@firstName", user.firstName);
+                command.Parameters.AddWithValue("@lastName", user.lastName);
+                command.Parameters.AddWithValue("@user_", user.user_);
+                command.Parameters.AddWithValue("@password_", user.password_);
                 // Ejecutar el procedimiento
                 command.ExecuteNonQuery();
                 res = true;
@@ -112,16 +113,17 @@ namespace NEBULOUS.Logic.User
             {
                 // Abrir conexión
                 sql_connection.Open();
-                // Invocar la función
-
+                // Invocar el procedimiento de almacenado
+                SqlCommand command = new SqlCommand("getRegisters", sql_connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                // Parámetros
+                command.Parameters.AddWithValue("@tableName", "allUser´sData");
+                // Ejecutar el procedimiento
+                reader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                sql_connection.Close();
             }
 
             return reader;
