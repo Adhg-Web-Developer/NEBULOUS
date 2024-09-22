@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\Supplier\" />
-    <Folder Include="Logic\Product\" />
-    <Folder Include="Logic\Operation\" />
     <Folder Include="Tools\" />
   </ItemGroup>
 
