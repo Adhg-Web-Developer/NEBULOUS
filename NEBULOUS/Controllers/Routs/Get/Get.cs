@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NEBULOUS.Logic.User;
-using NEBULOUS.Models.User;
-using System.Data.SqlClient;
 
-namespace NEBULOUS.Controllers.Routs
+namespace NEBULOUS.Controllers.Routs.Get
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -59,52 +56,6 @@ namespace NEBULOUS.Controllers.Routs
                 return Ok("Ruta Dashboard");
             }
         }
-
-        // users
-        private readonly List<object> Users = new List<object>();
-        [HttpGet(Urls.Urls.Users)]
-        public IActionResult users()
-        {
-            bool res = false;
-            if (res)
-            {
-                res = true;
-                return Ok(res);
-            }
-            else
-            {
-                //return Ok(res);
-                return Ok("Ruta Users");
-            }
-        }
-
-        // Obtener todos los usuarios
-        [HttpGet(Urls.Urls.Users + "/methods/read/")]
-        public async Task<ActionResult> readUsers([FromServices] string connection_sql)
-        {
-            SqlDataReader reader = await Task.FromResult(new LUser(connection_sql).Users());
-
-            if (reader == null && !reader.HasRows)
-            {
-                return StatusCode(500, "Error al leer los usuario.");
-            }
-
-            while (reader.Read()) {
-                Users.Add(new {
-                    id = (int)reader["id"],
-                    firstName = reader["firstName"].ToString(),
-                    lastName = reader["lastName"].ToString(),
-                    state = reader["state"].ToString(),
-                    user_ = reader["user_"].ToString(),
-                    password_ = reader["password_"].ToString(),
-                    date = reader["date"].ToString(),
-                });
-            }
-            reader.Close();
-
-            return Ok(Users);
-        }
-        // Obtener un solo usuario
 
         // suppliers
         [HttpGet(Urls.Urls.Suppliers)]

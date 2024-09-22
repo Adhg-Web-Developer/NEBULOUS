@@ -6,7 +6,9 @@ namespace NEBULOUS.Logic.User
     public class LUser
     {
         private readonly string connection_sql;
-        SqlConnection sql_connection; 
+        SqlConnection sql_connection;
+        private readonly List<object> AllUsers = new List<object>();
+
         public LUser(string connection_sql)
         {
             this.connection_sql = connection_sql;
@@ -105,10 +107,8 @@ namespace NEBULOUS.Logic.User
 
             return res;
         }
-        public SqlDataReader Users()
+        public List<object> Users()
         {
-            SqlDataReader reader = null;
-
             try
             {
                 // Abrir conexión
@@ -119,14 +119,28 @@ namespace NEBULOUS.Logic.User
                 // Parámetros
                 command.Parameters.AddWithValue("@tableName", "allUser´sData");
                 // Ejecutar el procedimiento
-                reader = command.ExecuteReader();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    AllUsers.Add(new
+                    {
+                        id = (int)reader["id"],
+                        firstName = reader["firstName"].ToString(),
+                        lastName = reader["lastName"].ToString(),
+                        state = reader["state"].ToString(),
+                        user_ = reader["user_"].ToString(),
+                        password_ = reader["password_"].ToString(),
+                        date = reader["date"].ToString(),
+                    });
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
 
-            return reader;
+            return AllUsers;
         }
     }
 }
