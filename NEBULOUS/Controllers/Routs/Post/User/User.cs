@@ -10,7 +10,7 @@ namespace NEBULOUS.Controllers.Routs.Post.User
         // Users
         // Crear
         [HttpPost(Urls.Urls.Users + "/methods/create/")]
-        public async Task<ActionResult> createUser([FromForm] Models.User.User user, [FromServices] string connection_sql)
+        public async Task<ActionResult> createUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
         {
             bool res = await Task.FromResult(new LUser(connection_sql).CreateUser(user));
 
@@ -22,9 +22,9 @@ namespace NEBULOUS.Controllers.Routs.Post.User
             return Ok(res);
         }
 
-        //// Modificar
+        // Modificar
         [HttpPost(Urls.Urls.Users + "/methods/modify/")]
-        public async Task<ActionResult> modifyUser([FromForm] Models.User.User user, [FromServices] string connection_sql)
+        public async Task<ActionResult> modifyUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
         {
             bool res = await Task.FromResult(new LUser(connection_sql).ModifyUser(user));
 
@@ -36,18 +36,18 @@ namespace NEBULOUS.Controllers.Routs.Post.User
             return Ok(res);
         }
 
-        //// Eliminar
+        // Eliminar
         [HttpPost(Urls.Urls.Users + "/methods/delete/")]
         public async Task<ActionResult> deleteUser([FromForm] int id, [FromServices] string connection_sql)
         {
-            bool user = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
+            bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
 
-            if (user == null && !user)
+            if (res == false && !res)
             {
                 return StatusCode(500, "Error al crear el usuario.");
             }
 
-            return Ok(user);
+            return Ok(res);
         }
     }
 }

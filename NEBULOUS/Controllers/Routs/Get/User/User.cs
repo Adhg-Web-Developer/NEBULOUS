@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NEBULOUS.Logic.User;
-using System.Data.SqlClient;
 
 namespace NEBULOUS.Controllers.Routs.Get.User
 {

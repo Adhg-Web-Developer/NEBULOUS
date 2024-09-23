@@ -2,7 +2,8 @@
 {
     public class Supplier
     {
-        public required string supplier { get; set; }
-        public required string details { get; set; }
+        public int? id { get; set; }
+        public string? supplier { get; set; }
+        public string? details { get; set; }
     }
 }
