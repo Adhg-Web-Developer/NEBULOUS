@@ -8,6 +8,7 @@ namespace NEBULOUS.Logic.User
         private readonly string connection_sql;
         SqlConnection sql_connection;
         private readonly List<object> AllUsers = new List<object>();
+        private object ObjOneUser;
 
         public LUser(string connection_sql)
         {
@@ -141,6 +142,43 @@ namespace NEBULOUS.Logic.User
             }
 
             return AllUsers;
+        }
+        public object ReadOneUser(int id)
+        {
+            try
+            {
+                // Abrir conexión
+                sql_connection.Open();
+                // Invocar el procedimiento de almacenado
+                SqlCommand command = new SqlCommand("getOneRegister", sql_connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                // Parámetros
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@tableName", "User_");
+                // Ejecutar el procedimiento
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ObjOneUser = new
+                    {
+                        id = (int)reader["id"],
+                        firstName = reader["firstName"].ToString(),
+                        lastName = reader["lastName"].ToString(),
+                        state = reader["state"].ToString(),
+                        user_ = reader["user_"].ToString(),
+                        password_ = reader["password_"].ToString(),
+                        date = reader["date"].ToString(),
+
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return ObjOneUser;
         }
     }
 }

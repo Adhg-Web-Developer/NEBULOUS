@@ -40,5 +40,17 @@ namespace NEBULOUS.Controllers.Routs.Get.User
         }
 
         // Obtener un solo usuario
+        [HttpGet(Urls.Urls.Users + "/methods/read/one-register/")]
+        public async Task<ActionResult> readOneUser([FromForm] int id, [FromServices] string connection_sql)
+        {
+            var user = await Task.FromResult(new LUser(connection_sql).ReadOneUser(id));
+
+            if (user == null)
+            {
+                return StatusCode(500, "Error al leer los usuario.");
+            }
+
+            return Ok(user);
+        }
     }
 }

@@ -38,16 +38,16 @@ namespace NEBULOUS.Controllers.Routs.Post.User
 
         //// Eliminar
         [HttpPost(Urls.Urls.Users + "/methods/delete/")]
-        public async Task<ActionResult> deleteUser([FromForm] Models.User.User user, [FromServices] string connection_sql)
+        public async Task<ActionResult> deleteUser([FromForm] int id, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(user.id.Value));
+            bool user = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
 
-            if (user == null && !res)
+            if (user == null && !user)
             {
                 return StatusCode(500, "Error al crear el usuario.");
             }
 
-            return Ok(res);
+            return Ok(user);
         }
     }
 }
