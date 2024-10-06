@@ -12,42 +12,77 @@ namespace NEBULOUS.Controllers.Routs.Post.Supplier
         [HttpPost(Urls.Urls.Suppliers + "/methods/create/")]
         public async Task<ActionResult> createSupplier([FromForm, Bind(Prefix = "")] Models.Supplier.Supplier supplier, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LSupplier(connection_sql).CreateSupplier(supplier));
-
-            if (supplier == null && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el proveedor.");
-            }
+                bool res = await Task.FromResult(new LSupplier(connection_sql).CreateSupplier(supplier));
 
-            return Ok(res);
+                if (supplier == null && !res)
+                {
+                    return StatusCode(500, "Error al crear el proveedor.");
+                }
+
+                return Ok(res);
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
 
         // Modificar
         [HttpPost(Urls.Urls.Suppliers + "/methods/modify/")]
         public async Task<ActionResult> modifySupplier([FromForm, Bind(Prefix = "")] Models.Supplier.Supplier supplier, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LSupplier(connection_sql).ModifySupplier(supplier));
-
-            if (supplier == null && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el proveedor.");
-            }
+                if (HttpContext.Session.GetString("idUserType") == "1")
+                {
+                    bool res = await Task.FromResult(new LSupplier(connection_sql).ModifySupplier(supplier));
 
-            return Ok(res);
+                    if (supplier == null && !res)
+                    {
+                        return StatusCode(500, "Error al crear el proveedor.");
+                    }
+
+                    return Ok(res);
+                }
+                else
+                {
+                    return Ok("No es posible realizar esta acción debido a que no cuentas con los permisos necesarios.");
+                }
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
 
         // Eliminar
         [HttpPost(Urls.Urls.Suppliers + "/methods/delete/")]
         public async Task<ActionResult> deleteSupplier([FromForm] int id, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LSupplier(connection_sql).DeleteSupplier(id));
-
-            if (res == false && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el usuario.");
-            }
+                if (HttpContext.Session.GetString("idUserType") == "1")
+                {
+                    bool res = await Task.FromResult(new LSupplier(connection_sql).DeleteSupplier(id));
 
-            return Ok(res);
+                    if (res == false && !res)
+                    {
+                        return StatusCode(500, "Error al crear el usuario.");
+                    }
+
+                    return Ok(res);
+                }
+                else
+                {
+                    return Ok("No es posible realizar esta acción debido a que no cuentas con los permisos necesarios.");
+                }
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
     }
 }

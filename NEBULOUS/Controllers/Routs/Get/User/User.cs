@@ -28,28 +28,42 @@ namespace NEBULOUS.Controllers.Routs.Get.User
         [HttpGet(Urls.Urls.Users + "/methods/read/")]
         public async Task<ActionResult> readUsers([FromServices] string connection_sql)
         {
-            var Users = await Task.FromResult(new LUser(connection_sql).Users());
-
-            if (Users == null)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al leer los usuario.");
-            }
+                var Users = await Task.FromResult(new LUser(connection_sql).Users());
 
-            return Ok(Users);
+                if (Users == null)
+                {
+                    return StatusCode(500, "Error al leer los usuario.");
+                }
+
+                return Ok(Users);
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
 
         // Obtener un solo usuario
         [HttpGet(Urls.Urls.Users + "/methods/read/one-register/")]
         public async Task<ActionResult> readOneUser([FromForm] int id, [FromServices] string connection_sql)
         {
-            var user = await Task.FromResult(new LUser(connection_sql).ReadOneUser(id));
-
-            if (user == null)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al leer los usuario.");
-            }
+                var user = await Task.FromResult(new LUser(connection_sql).ReadOneUser(id));
 
-            return Ok(user);
+                if (user == null)
+                {
+                    return StatusCode(500, "Error al leer los usuario.");
+                }
+
+                return Ok(user);
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
     }
 }

@@ -12,42 +12,77 @@ namespace NEBULOUS.Controllers.Routs.Post.User
         [HttpPost(Urls.Urls.Users + "/methods/create/")]
         public async Task<ActionResult> createUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LUser(connection_sql).CreateUser(user));
-
-            if (user == null && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el usuario.");
-            }
+                bool res = await Task.FromResult(new LUser(connection_sql).CreateUser(user));
 
-            return Ok(res);
+                if (user == null && !res)
+                {
+                    return StatusCode(500, "Error al crear el usuario.");
+                }
+
+                return Ok(res);
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
 
         // Modificar
         [HttpPost(Urls.Urls.Users + "/methods/modify/")]
         public async Task<ActionResult> modifyUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LUser(connection_sql).ModifyUser(user));
-
-            if (user == null && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el usuario.");
-            }
+                if (HttpContext.Session.GetString("idUserType") == "1") 
+                {
+                    bool res = await Task.FromResult(new LUser(connection_sql).ModifyUser(user));
 
-            return Ok(res);
+                    if (user == null && !res)
+                    {
+                        return StatusCode(500, "Error al crear el usuario.");
+                    }
+
+                    return Ok(res);
+                }
+                else
+                {
+                    return Ok("No es posible realizar esta acción debido a que no cuentas con los permisos necesarios.");
+                }
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
 
         // Eliminar
         [HttpPost(Urls.Urls.Users + "/methods/delete/")]
         public async Task<ActionResult> deleteUser([FromForm] int id, [FromServices] string connection_sql)
         {
-            bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
-
-            if (res == false && !res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return StatusCode(500, "Error al crear el usuario.");
-            }
+                if (HttpContext.Session.GetString("idUserType") == "1")
+                {
+                    bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
 
-            return Ok(res);
+                    if (res == false && !res)
+                    {
+                        return StatusCode(500, "Error al crear el usuario.");
+                    }
+
+                    return Ok(res);
+                }
+                else
+                {
+                    return Ok("No es posible realizar esta acción debido a que no cuentas con los permisos necesarios.");
+                }
+            }
+            else
+            {
+                return Ok("No es posible acceder a esta ruta, primeramente necesitas iniciar sesión.");
+            }
         }
     }
 }

@@ -83,6 +83,10 @@ namespace NEBULOUS.Logic.User
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+            finally
+            {
+                sql_connection.Close();
+            }
 
             return ObjOneUser;
         }

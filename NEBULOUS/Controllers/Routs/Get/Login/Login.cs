@@ -10,16 +10,13 @@ namespace NEBULOUS.Controllers.Routs.Get.Login
         [HttpGet(Urls.Urls.Login)]
         public IActionResult login()
         {
-            bool res = false;
-            if (res)
+            if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                res = true;
-                return Ok(res);
+                return Ok("No es posible acceder a esta ruta debido a que has iniciado sesión.");
             }
             else
             {
-                //return Ok(res);
-                return Ok("Ruta Login");
+                return Ok("Estás en la ruta login, no has iniciado sesión, por favor, inicia sesión para ingresar al sistema.");
             }
         }
     }
