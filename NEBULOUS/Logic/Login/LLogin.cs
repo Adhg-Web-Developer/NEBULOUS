@@ -64,14 +64,17 @@ namespace NEBULOUS.Logic.Login
             {
                 // Abrir conexión
                 sql_connection.Open();
-                // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("mSession", sql_connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                // Parámetros
-                command.Parameters.AddWithValue("@id", session.GetType().GetProperty("id").GetValue(ObjSession, null));
-                command.Parameters.AddWithValue("@state", "Activo");
-                // Ejecutar el procedimiento
-                command.ExecuteNonQuery();
+                if (session != null)
+                {
+                    // Invocar el procedimiento de almacenado
+                    SqlCommand command = new SqlCommand("mSession", sql_connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    // Parámetros
+                    command.Parameters.AddWithValue("@id", session.GetType().GetProperty("id").GetValue(ObjSession, null));
+                    command.Parameters.AddWithValue("@state", "Activo");
+                    // Ejecutar el procedimiento
+                    command.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
@@ -81,8 +84,20 @@ namespace NEBULOUS.Logic.Login
             {
                 sql_connection.Close();
             }
-
-            return this.getOneRegister(int.Parse(session.GetType().GetProperty("id").GetValue(ObjSession, null).ToString()), "Activo", int.Parse(session.GetType().GetProperty("idUserType").GetValue(ObjSession, null).ToString()));
+            if (session != null) { 
+                return this.getOneRegister(int.Parse(session.GetType().GetProperty("id").GetValue(ObjSession, null).ToString()), "Activo", int.Parse(session.GetType().GetProperty("idUserType").GetValue(ObjSession, null).ToString()));
+            }
+            else
+            {
+                return new
+                {
+                    id = false,
+                    firstName = "",
+                    lastName = "",
+                    idUserType = false,
+                    stateSession = "False"
+                };
+            }
         }
         public object getOneRegister(int id, string state_session, int id_user_type)
         {

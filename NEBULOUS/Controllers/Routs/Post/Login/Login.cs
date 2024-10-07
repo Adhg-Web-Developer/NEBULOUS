@@ -25,7 +25,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Login
                 }
 
                 // Sesión del usuario
-                if (UserSession != null)
+                if (UserSession != null && UserSession.GetType().GetProperty("id").GetValue(UserSession, null).ToString() != "False")
                 {
                     HttpContext.Session.SetString("id", UserSession.GetType().GetProperty("id").GetValue(UserSession, null).ToString());
                     HttpContext.Session.SetString("idUserType", UserSession.GetType().GetProperty("idUserType").GetValue(UserSession, null).ToString());
