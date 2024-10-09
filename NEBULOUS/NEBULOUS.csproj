@@ -17,4 +17,26 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Routs\Get\Accounting\" />
+    <Folder Include="Controllers\Routs\Get\Operations\OperationDetail\" />
+    <Folder Include="Controllers\Routs\Get\Operations\Operation\" />
+    <Folder Include="Controllers\Routs\Get\Product\ProductBrands\" />
+    <Folder Include="Controllers\Routs\Get\Product\ProductSubCategory\" />
+    <Folder Include="Controllers\Routs\Get\Product\ProductCategory\" />
+    <Folder Include="Controllers\Routs\Get\Product\Product\" />
+    <Folder Include="Controllers\Routs\Post\Operations\OperationDetail\" />
+    <Folder Include="Controllers\Routs\Post\Operations\Operation\" />
+    <Folder Include="Controllers\Routs\Post\Product\ProductBrands\" />
+    <Folder Include="Controllers\Routs\Post\Product\ProductCategory\" />
+    <Folder Include="Controllers\Routs\Post\Product\ProductSubCategory\" />
+    <Folder Include="Controllers\Routs\Post\Product\Product\" />
+    <Folder Include="Logic\Operations\OperationDetail\" />
+    <Folder Include="Logic\Operations\Operation\" />
+    <Folder Include="Logic\Product\ProductBrands\" />
+    <Folder Include="Logic\Product\ProductCategory\" />
+    <Folder Include="Logic\Product\ProductSubCategory\" />
+    <Folder Include="Logic\Product\Product\" />
+  </ItemGroup>
+
 </Project>
