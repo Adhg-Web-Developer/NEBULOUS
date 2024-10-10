@@ -138,7 +138,7 @@ namespace NEBULOUS.Logic.Product.ProductCategory
 
             return res;
         }
-        public bool ModifySupplier(Models.Product.ProductCategory.ProductCategory productCategory)
+        public bool ModifyProductCategory(Models.Product.ProductCategory.ProductCategory productCategory)
         {
             bool res = false;
 
