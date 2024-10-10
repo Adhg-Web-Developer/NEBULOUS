@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Routs\Get\Operation\OperationDetails\" />
     <Folder Include="Controllers\Routs\Post\Operation\OperationDetails\" />
     <Folder Include="Controllers\Routs\Post\Operation\Operation\" />
     <Folder Include="Controllers\Routs\Post\Product\ProductBrands\" />

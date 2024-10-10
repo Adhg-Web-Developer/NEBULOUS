@@ -2,19 +2,19 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace NEBULOUS.Controllers.Routs.Get.Operation.Operation
+namespace NEBULOUS.Controllers.Routs.Get.Operation.OperationDetails
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Operation : ControllerBase
+    public class OperationDetails : ControllerBase
     {
-        // Operations
-        [HttpGet(Urls.Urls.Operations)]
-        public IActionResult operations()
+        // OperationDetails
+        [HttpGet(Urls.Urls.Operations+"/operation-details")]
+        public IActionResult operationDetails()
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                return Ok("Estás en la ruta de Operaciones.");
+                return Ok("Estás en la ruta de Detalles de Operación.");
             }
             else
             {
