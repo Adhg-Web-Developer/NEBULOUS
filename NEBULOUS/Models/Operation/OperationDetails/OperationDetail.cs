@@ -1,4 +1,4 @@
-﻿namespace NEBULOUS.Models.Operation
+﻿namespace NEBULOUS.Models.Operation.OperationDetails
 {
     public class OperationDetail
     {

@@ -18,7 +18,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Supplier
 
                 if (supplier == null && !res)
                 {
-                    return StatusCode(500, "Error al crear el proveedor.");
+                        return StatusCode(500, "Error al crear el registro.");
                 }
 
                 return Ok(res);
@@ -41,7 +41,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Supplier
 
                     if (supplier == null && !res)
                     {
-                        return StatusCode(500, "Error al crear el proveedor.");
+                        return StatusCode(500, "Error al modificar el registro.");
                     }
 
                     return Ok(res);
@@ -69,7 +69,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Supplier
 
                     if (res == false && !res)
                     {
-                        return StatusCode(500, "Error al crear el usuario.");
+                        return StatusCode(500, "Error al eliminar el registro.");
                     }
 
                     return Ok(res);
