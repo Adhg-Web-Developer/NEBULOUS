@@ -19,12 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Routs\Post\Operation\OperationDetails\" />
-    <Folder Include="Logic\Operation\OperationDetails\" />
-    <Folder Include="Logic\Operation\Operation\" />
-    <Folder Include="Logic\Product\ProductBrands\" />
-    <Folder Include="Logic\Product\ProductSubCategory\" />
-    <Folder Include="Logic\Product\ProductCategory\" />
-    <Folder Include="Logic\Product\Product\" />
   </ItemGroup>
 
 </Project>
