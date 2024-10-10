@@ -9,7 +9,7 @@ namespace NEBULOUS.Controllers.Routs.Get.Product.Product
     public class Product : ControllerBase
     {
         // ProductBrands
-        [HttpGet(Urls.Urls.Products)]
+        [HttpGet(Urls.Urls.Product)]
         public IActionResult products()
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")

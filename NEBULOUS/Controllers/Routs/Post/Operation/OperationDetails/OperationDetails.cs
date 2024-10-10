@@ -11,7 +11,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Operation.OperationDetails
     {
         // Operation
         // Crear
-        [HttpPost(Urls.Urls.OperationDetails + "/methods/create/")]
+        [HttpPost("/operations" + Urls.Urls.OperationDetails + "/methods/create/")]
         public async Task<ActionResult> createOperationDetails([FromForm, Bind(Prefix = "")] Models.Operation.OperationDetails.OperationDetail operationDetail, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -32,7 +32,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Operation.OperationDetails
         }
 
         // Modificar
-        [HttpPost(Urls.Urls.OperationDetails + "/methods/modify/")]
+        [HttpPost("/operations" + Urls.Urls.OperationDetails + "/methods/modify/")]
         public async Task<ActionResult> modifyOperation([FromForm, Bind(Prefix = "")] Models.Operation.OperationDetails.OperationDetail operationDetail, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -60,7 +60,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Operation.OperationDetails
         }
 
         // Eliminar
-        [HttpPost(Urls.Urls.OperationDetails + "/methods/delete/")]
+        [HttpPost("/operations" + Urls.Urls.OperationDetails + "/methods/delete/")]
         public async Task<ActionResult> deleteOperation([FromForm] int id, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")

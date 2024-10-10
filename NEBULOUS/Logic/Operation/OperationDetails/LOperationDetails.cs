@@ -99,7 +99,7 @@ namespace NEBULOUS.Logic.Operation.OperationDetails
                 // Abrir conexión
                 sql_connection.Open();
                 // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("iOperation", sql_connection);
+                SqlCommand command = new SqlCommand("iOperationDetail", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
                 command.Parameters.AddWithValue("@idMovementType", operationDetail.idMovementType);
@@ -107,9 +107,10 @@ namespace NEBULOUS.Logic.Operation.OperationDetails
                 command.Parameters.AddWithValue("@idProduct", operationDetail.idProduct);
                 command.Parameters.AddWithValue("@unityCost", operationDetail.unityCost);
                 command.Parameters.AddWithValue("@unityPrice", operationDetail.unityPrice);
-                command.Parameters.AddWithValue("@amout", operationDetail.amout);
-                command.Parameters.AddWithValue("@subTotal", operationDetail.subTotal);
-
+                command.Parameters.AddWithValue("@amount", operationDetail.amount);
+                float subTotal = float.Parse(operationDetail.amount.ToString()) * float.Parse(operationDetail.unityCost.ToString());
+                command.Parameters.AddWithValue("@subTotal", subTotal);
+                Console.Write(subTotal);
                 // Ejecutar el procedimiento
                 command.ExecuteNonQuery();
                 res = true;
@@ -165,7 +166,7 @@ namespace NEBULOUS.Logic.Operation.OperationDetails
                 // Abrir conexión
                 sql_connection.Open();
                 // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("mSupplier", sql_connection);
+                SqlCommand command = new SqlCommand("mOperationDetail", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
                 command.Parameters.AddWithValue("@id", operationDetail.id);
@@ -174,8 +175,9 @@ namespace NEBULOUS.Logic.Operation.OperationDetails
                 command.Parameters.AddWithValue("@idProduct", operationDetail.idProduct);
                 command.Parameters.AddWithValue("@unityCost", operationDetail.unityCost);
                 command.Parameters.AddWithValue("@unityPrice", operationDetail.unityPrice);
-                command.Parameters.AddWithValue("@amout", operationDetail.amout);
-                command.Parameters.AddWithValue("@subTotal", operationDetail.subTotal);
+                command.Parameters.AddWithValue("@amount", operationDetail.amount);
+                float subTotal = float.Parse(operationDetail.amount.ToString()) * float.Parse(operationDetail.unityCost.ToString());
+                command.Parameters.AddWithValue("@subTotal", subTotal);
                 // Ejecutar el procedimiento
                 command.ExecuteNonQuery();
                 res = true;

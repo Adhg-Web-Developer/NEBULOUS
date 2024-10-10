@@ -11,7 +11,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.Product
     {
         // Product
         // Crear
-        [HttpPost(Urls.Urls.Products + "/methods/create/")]
+        [HttpPost(Urls.Urls.Product + "/methods/create/")]
         public async Task<ActionResult> createProduct([FromForm, Bind(Prefix = "")] Models.Product.Product.Product product, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -32,7 +32,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.Product
         }
 
         // Modificar
-        [HttpPost(Urls.Urls.Products + "/methods/modify/")]
+        [HttpPost(Urls.Urls.Product + "/methods/modify/")]
         public async Task<ActionResult> modifyProduct([FromForm, Bind(Prefix = "")] Models.Product.Product.Product product, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -60,7 +60,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.Product
         }
 
         // Eliminar
-        [HttpPost(Urls.Urls.Products + "/methods/delete/")]
+        [HttpPost(Urls.Urls.Product + "/methods/delete/")]
         public async Task<ActionResult> deleteProduct([FromForm] int id, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")

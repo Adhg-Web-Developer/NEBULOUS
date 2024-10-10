@@ -32,7 +32,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Operation.Operation
         }
 
         // Modificar
-        [HttpPost(Urls.Urls.ProductCategory + "/methods/modify/")]
+        [HttpPost(Urls.Urls.Operations + "/methods/modify/")]
         public async Task<ActionResult> modifyOperation([FromForm, Bind(Prefix = "")] Models.Operation.Operation.Operation operation, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -60,7 +60,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Operation.Operation
         }
 
         // Eliminar
-        [HttpPost(Urls.Urls.ProductCategory + "/methods/delete/")]
+        [HttpPost(Urls.Urls.Operations + "/methods/delete/")]
         public async Task<ActionResult> deleteOperation([FromForm] int id, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")

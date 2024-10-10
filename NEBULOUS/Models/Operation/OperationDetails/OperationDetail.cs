@@ -8,7 +8,6 @@
         public required int idProduct { get; set; }
         public required float unityCost { get; set; }
         public required float unityPrice { get; set; }
-        public required float amout { get; set; }
-        public required float subTotal { get; set; }
+        public required float amount { get; set; }
     }
 }

@@ -9,7 +9,7 @@
         public const string Dashboard = "/dashboard";
         public const string Users = "/users";
         public const string Suppliers = "/suppliers";
-        public const string Products = "/products";
+        public const string Product = "/product";
         public const string ProductCategory = "/product-category";
         public const string ProductSubCategory = "/product-sub-category";
         public const string ProductBrands = "/product-brands";
@@ -18,6 +18,6 @@
         public const string GeneralBalance = "/general-balance";
         
         public const string Operations = "/operations";
-        public const string OperationDetails = "/Operation-details";
+        public const string OperationDetails = "/operation-details";
     }
 }

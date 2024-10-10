@@ -11,7 +11,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.ProductCategory
     {
         // Product Category
         // Crear
-        [HttpPost(Urls.Urls.ProductCategory + "/methods/create/")]
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/create/")]
         public async Task<ActionResult> createProductCategory([FromForm, Bind(Prefix = "")] Models.Product.ProductCategory.ProductCategory productCategory, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -32,7 +32,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.ProductCategory
         }
 
         // Modificar
-        [HttpPost(Urls.Urls.ProductCategory + "/methods/modify/")]
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/modify/")]
         public async Task<ActionResult> modifyProductCategory([FromForm, Bind(Prefix = "")] Models.Product.ProductCategory.ProductCategory productCategory, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
@@ -60,7 +60,7 @@ namespace NEBULOUS.Controllers.Routs.Post.Product.ProductCategory
         }
 
         // Eliminar
-        [HttpPost(Urls.Urls.ProductCategory + "/methods/delete/")]
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/delete/")]
         public async Task<ActionResult> deleteProductCategory([FromForm] int id, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")

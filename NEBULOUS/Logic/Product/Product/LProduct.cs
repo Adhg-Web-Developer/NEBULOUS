@@ -93,7 +93,7 @@ namespace NEBULOUS.Logic.Product.Product
                 // Abrir conexión
                 sql_connection.Open();
                 // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("iProductCategory", sql_connection);
+                SqlCommand command = new SqlCommand("iProduct", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
                 command.Parameters.AddWithValue("@idProductSubCategory", product.idProductSubCategory);
@@ -157,7 +157,7 @@ namespace NEBULOUS.Logic.Product.Product
                 // Abrir conexión
                 sql_connection.Open();
                 // Invocar el procedimiento de almacenado
-                SqlCommand command = new SqlCommand("mSupplier", sql_connection);
+                SqlCommand command = new SqlCommand("mProduct", sql_connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 // Parámetros
                 command.Parameters.AddWithValue("@id", product.id);
