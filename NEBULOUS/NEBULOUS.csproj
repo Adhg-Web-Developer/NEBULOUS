@@ -19,11 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Routs\Get\Operation\OperationDetails\" />
-    <Folder Include="Controllers\Routs\Get\Operation\Operation\" />
-    <Folder Include="Controllers\Routs\Get\Product\ProductBrands\" />
-    <Folder Include="Controllers\Routs\Get\Product\ProductCategory\" />
-    <Folder Include="Controllers\Routs\Get\Product\ProductSubCategory\" />
-    <Folder Include="Controllers\Routs\Get\Product\Product\" />
     <Folder Include="Controllers\Routs\Post\Operation\OperationDetails\" />
     <Folder Include="Controllers\Routs\Post\Operation\Operation\" />
     <Folder Include="Controllers\Routs\Post\Product\ProductBrands\" />
@@ -36,6 +31,8 @@
     <Folder Include="Logic\Product\ProductSubCategory\" />
     <Folder Include="Logic\Product\ProductCategory\" />
     <Folder Include="Logic\Product\Product\" />
+    <Folder Include="Models\Operation\OperationDetails\" />
+    <Folder Include="Models\Operation\Operation\" />
   </ItemGroup>
 
 </Project>

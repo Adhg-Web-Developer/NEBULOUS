@@ -16,11 +16,7 @@
 
         public const string Inventory = "/inventory";
         public const string GeneralBalance = "/general-balance";
-
-        public static class Operations
-        {
-            public const string Buys = "/product-buys";
-            public const string Sale = "/product-sale";
-        }
+        
+        public const string Operations = "/operations";
     }
 }

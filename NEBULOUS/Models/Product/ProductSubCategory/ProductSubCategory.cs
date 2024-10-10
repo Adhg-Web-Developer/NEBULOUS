@@ -1,4 +1,4 @@
-﻿namespace NEBULOUS.Models.Product
+﻿namespace NEBULOUS.Models.Product.ProductSubCategory
 {
     public class ProductSubCategory
     {
