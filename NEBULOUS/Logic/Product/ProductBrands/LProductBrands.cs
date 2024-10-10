@@ -171,6 +171,5 @@ namespace NEBULOUS.Logic.Product.ProductBrands
 
             return res;
         }
-
     }
 }

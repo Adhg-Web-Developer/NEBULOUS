@@ -18,5 +18,6 @@
         public const string GeneralBalance = "/general-balance";
         
         public const string Operations = "/operations";
+        public const string OperationDetails = "/Operation-details";
     }
 }
