@@ -2,6 +2,7 @@
 {
     public class Product
     {
+        public int? id { get; set; }
         public required int idProductSubCategory { get; set; }
         public required int idBrand { get; set; }
         public required int idCategory { get; set; }
