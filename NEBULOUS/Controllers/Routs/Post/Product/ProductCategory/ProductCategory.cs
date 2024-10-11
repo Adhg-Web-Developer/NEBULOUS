@@ -1,22 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NEBULOUS.Logic.User;
+using NEBULOUS.Logic.Product.ProductCategory;
 
-namespace NEBULOUS.Controllers.Routs.Post.User
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace NEBULOUS.Controllers.Routs.Post.Product.ProductCategory
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class User : ControllerBase
+    public class ProductCategory : ControllerBase
     {
-        // Users
+        // Product Category
         // Crear
-        [HttpPost(Urls.Urls.Users + "/methods/create/")]
-        public async Task<ActionResult> createUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/create/")]
+        public async Task<ActionResult> createProductCategory([FromForm, Bind(Prefix = "")] Models.Product.ProductCategory.ProductCategory productCategory, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                bool res = await Task.FromResult(new LUser(connection_sql).CreateUser(user));
+                bool res = await Task.FromResult(new LProductCategory(connection_sql).CreateProductCategory(productCategory));
 
-                if (user == null && !res)
+                if (productCategory == null && !res)
                 {
                     return StatusCode(500, "Error al crear el registro.");
                 }
@@ -30,16 +32,16 @@ namespace NEBULOUS.Controllers.Routs.Post.User
         }
 
         // Modificar
-        [HttpPost(Urls.Urls.Users + "/methods/modify/")]
-        public async Task<ActionResult> modifyUser([FromForm, Bind(Prefix = "")] Models.User.User user, [FromServices] string connection_sql)
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/modify/")]
+        public async Task<ActionResult> modifyProductCategory([FromForm, Bind(Prefix = "")] Models.Product.ProductCategory.ProductCategory productCategory, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
             {
-                if (HttpContext.Session.GetString("idUserType") == "1") 
+                if (HttpContext.Session.GetString("idUserType") == "1")
                 {
-                    bool res = await Task.FromResult(new LUser(connection_sql).ModifyUser(user));
+                    bool res = await Task.FromResult(new LProductCategory(connection_sql).ModifyProductCategory(productCategory));
 
-                    if (user == null && !res)
+                    if (productCategory == null && !res)
                     {
                         return StatusCode(500, "Error al modificar el registro.");
                     }
@@ -58,14 +60,14 @@ namespace NEBULOUS.Controllers.Routs.Post.User
         }
 
         // Eliminar
-        [HttpPost(Urls.Urls.Users + "/methods/delete/")]
-        public async Task<ActionResult> deleteUser([FromForm] int id, [FromServices] string connection_sql)
+        [HttpPost("/product" + Urls.Urls.ProductCategory + "/methods/delete/")]
+        public async Task<ActionResult> deleteProductCategory([FromForm] int id, [FromServices] string connection_sql)
         {
             if (HttpContext.Session.GetString("loggedIn") == "true")
             {
                 if (HttpContext.Session.GetString("idUserType") == "1")
                 {
-                    bool res = await Task.FromResult(new LUser(connection_sql).DeleteUser(id));
+                    bool res = await Task.FromResult(new LProductCategory(connection_sql).DeleteProductCategory(id));
 
                     if (res == false && !res)
                     {
